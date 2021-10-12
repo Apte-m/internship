@@ -1,0 +1,66 @@
+Вывести список самолетов с кодами 320, 321, 733;
+SELECT  AIRCRAFT_CODE FROM  AIRCRAFTS_DATA ad WHERE AIRCRAFT_CODE  IN ('733','320','322') ;
+*****************
+Вывести список самолетов с кодом не на 3;Вывести список самолетов с кодом не на 3;
+SELECT  AIRCRAFT_CODE FROM  AIRCRAFTS_DATA ad WHERE AIRCRAFT_CODE  NOT LIKE  '%3%' ;
+Найти билеты оформленные на имя «OLGA», с емайлом «OLGA» или без емайла;
+SELECT  PASSENGER_NAME  ,EMAIL FROM TICKETS t WHERE PASSENGER_NAME LIKE '%OLGA%'  AND EMAIL LIKE  '%@%';
+****************
+Найти самолеты с дальностью полета 5600, 5700. Отсортировать список по убыванию дальности полета;
+SELECT  MODEL   FROM  AIRCRAFTS_DATA ad WHERE "RANGE" BETWEEN '5600' AND '5700' ;
+****************
+Найти аэропорты в Moscow. Вывести название аэропорта вместе с городом. Отсортировать по полученному названию;
+SELECT  AIRPORT_NAME  FROM  AIRPORTS_DATA ad WHERE CITY LIKE 'Mosc%' ;
+****************
+SELECT  DISTINCT CITY ,TIMEZONE FROM  AIRPORTS_DATA ad WHERE TIMEZONE LIKE 'E%' ;
+****************
+Найти бронирование с кодом на «3A4» и вывести сумму брони со скидкой 10%
+SELECT TOTAL_AMOUNT,   (TOTAL_AMOUNT * 0.9) AS Sale FROM BOOKINGS b WHERE BOOK_REF LIKE '%3A4%' ;
+***************
+Вывести все данные по местам в самолете с кодом 320 и классом «Business»в формате «Данные по месту: номер места»
+SELECT  FARE_CONDITIONS ,SEAT_NO FROM  SEATS s  WHERE FARE_CONDITIONS LIKE '%B%' AND AIRCRAFT_CODE LIKE '%320%';
+***************
+Найти максимальную и минимальную сумму бронирования в 2017 году;
+SELECT  MAX(TOTAL_AMOUNT),MIN(TOTAL_AMOUNT) FROM BOOKINGS b WHERE TRUNC(BOOK_DATE) BETWEEN  TO_DATE ('2017.01.01','yyyy.mm.dd') AND TO_DATE('2017.12.31','yyyy.mm.dd') ;
+**************
+SELECT  FLIGHT_ID , COUNT(BOARDING_NO) FROM  BOARDING_PASSES bp GROUP BY FLIGHT_ID  ;
+****************
+Найти количество мест во всех самолетах с учетом типа места;
+SELECT  FARE_CONDITIONS , COUNT(SEAT_NO) FROM  SEATS s WHERE FARE_CONDITIONS LIKE  '%Eco%' GROUP BY FARE_CONDITIONS ;
+****************
+Найти количество билетов пассажира ALEKSANDR STEPANOV, телефон которого заканчивается на 11;
+SELECT  COUNT(PASSENGER_ID)  FROM  TICKETS WHERE (PASSENGER_NAME LIKE '%ALEKSANDR STEPANOV%') AND (PHONE LIKE '%11');
+***************
+Вывести всех пассажиров с именем ALEKSANDR, у которых количество билетов больше 2000. 
+SELECT  COUNT(PASSENGER_ID), PASSENGER_NAME FROM  TICKETS WHERE PASSENGER_NAME  LIKE '%ALEKSANDR%' 
+GROUP BY PASSENGER_NAME HAVING COUNT(PASSENGER_ID) > 2000  ;
+**************
+Вывести дни в сентябре 2017 с количеством рейсов больше 500.
+
+
+
+
+**************
+Вывести список городов, в которых несколько аэропортов
+SELECT COUNT(AIRPORT_NAME), CITY FROM  AIRPORTS_DATA  ad GROUP BY CITY HAVING  COUNT(AIRPORT_NAME) > 1 ; 
+**************
+SELECT  ad.MODEL,COUNT(s.SEAT_NO)  FROM  SEATS s  JOIN AIRCRAFTS_DATA ad ON ad.AIRCRAFT_CODE  = s.AIRCRAFT_CODE  GROUP BY ad.MODEL  ;
+*************
+Вывести информацию по всем рейсам из аэропортов в г.Москва за сентябрь 2017
+
+
+
+
+
+******************
+Вывести кол-во рейсов по каждому аэропорту, месяцу в г.Москва за 2017
+
+
+
+
+*****************
+Найти все билеты по бронированию на «3A4B»
+SELECT  TICKET_NO FROM  TICKETS t  WHERE  BOOK_REF LIKE '%3A4B%' ;
+**************
+Найти все перелеты по бронированию на «3A4B»
+SELECT  f.FLIGHT_ID FROM  TICKETS   t RIGHT JOIN TICKET_FLIGHTS  f  ON f.TICKET_NO  = t.TICKET_NO WHERE BOOK_REF LIKE '%3A4B%' ;
