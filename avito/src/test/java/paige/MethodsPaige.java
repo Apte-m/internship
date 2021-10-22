@@ -54,9 +54,9 @@ public class MethodsPaige extends BasePaige {
         return this;
     }
 
-    public MethodsPaige searchCategory() {
+    public MethodsPaige searchCategory(Category category) {
         Select select = new Select(categorySelector);
-        select.selectByVisibleText(Category.Оргтехника.getValue());
+        select.selectByVisibleText(category.getValue());
         return this;
     }
 
@@ -75,7 +75,6 @@ public class MethodsPaige extends BasePaige {
 
     public MethodsPaige setSearchCity(String city) {
         inputElement.sendKeys(city);
-        WebDriverWait wait = new WebDriverWait(webDriver, 5);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[.='" + city + "']")));
         inputElement.sendKeys(Keys.RETURN);
         return this;

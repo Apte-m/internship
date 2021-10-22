@@ -6,6 +6,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import paige.MethodsPaige;
+import utils.Browser;
+import utils.DriverFactory;
 
 public class Settings {
     private static WebDriver webDriver;
@@ -17,8 +19,7 @@ public class Settings {
 
     @BeforeMethod
     public void runPaige() {
-        WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();
+        webDriver = DriverFactory.getWebDriver(Browser.CHROME);
         webDriver.manage().window().maximize();
         paige = new MethodsPaige();
     }
