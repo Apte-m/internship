@@ -40,7 +40,7 @@ public class MethodPaige extends BasePaige {
         return this;
     }
 
-    public void assertThatInputText() {
+    public void assertThatInputText(String value) {
        assertThat(search.getAttribute("value"))
                .as("argument incorrect")
                .isEqualToIgnoringCase("selenium");

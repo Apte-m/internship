@@ -23,7 +23,7 @@ public class MethodsPaige extends BasePaige {
     @FindBy(xpath = "//div[@class='main-select-zU2Cl main-location-bH9Vg']")
     private WebElement searchCity;
 
-    @FindBy (xpath = "//input[@data-marker='popup-location/region/input']")
+    @FindBy(xpath = "//input[@data-marker='popup-location/region/input']")
     private WebElement inputElement;
 
     @FindBy(css = "#category")
@@ -41,7 +41,7 @@ public class MethodsPaige extends BasePaige {
     @FindBy(xpath = "//div[@class='index-topPanel-McfCA']//option[@value='2']")
     private WebElement choosePrice;
 
-    @FindBy (xpath = "//span[@class='price-text-E1Y7h text-text-LurtD text-size-s-BxGpL']")
+    @FindBy(xpath = "//span[@class='price-text-E1Y7h text-text-LurtD text-size-s-BxGpL']")
     List<WebElement> info;
 
 
@@ -62,8 +62,7 @@ public class MethodsPaige extends BasePaige {
 
     public MethodsPaige searchOnTheWord(String word) {
         search.click();
-        search.sendKeys(word);
-        search.sendKeys(Keys.RETURN);
+        search.sendKeys(word + Keys.RETURN);
         return this;
     }
 
@@ -100,8 +99,9 @@ public class MethodsPaige extends BasePaige {
         choosePrice.click();
         return this;
     }
-    public void info (int number) {
-        List <WebElement>  result =  info;
+
+    public void info(int number) {
+        List<WebElement> result = info;
         result.stream()
                 .map((s) -> s.getText())
                 .limit(number)

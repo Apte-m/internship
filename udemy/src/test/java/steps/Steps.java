@@ -10,6 +10,6 @@ public class Steps {
                 .clickSearch()
                 .inputText("selenium")
                 .pressEnter()
-                .assertThatInputText();
+                .assertThatInputText("selenium");
     }
 }
