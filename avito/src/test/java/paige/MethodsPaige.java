@@ -7,7 +7,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -101,8 +100,7 @@ public class MethodsPaige extends BasePaige {
     }
 
     public void info(int number) {
-        List<WebElement> result = info;
-        result.stream()
+        info.stream()
                 .map((s) -> s.getText())
                 .limit(number)
                 .collect(Collectors.toList())
